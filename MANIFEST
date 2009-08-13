@@ -3,6 +3,6 @@ lib/File/ANVL.pm
 Makefile.PL
 MANIFEST
 README
-t/atest.t
+t/anvltest.t
 VERSION
 META.yml                                 Module meta-data (added by MakeMaker)

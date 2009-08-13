@@ -3,7 +3,6 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-    #EXE_FILES		=> [ 'snag' ],
     NAME                => 'File::ANVL',
     AUTHOR              => 'John A. Kunze <jak@ucop.edu>',
     VERSION_FROM        => 'VERSION',
@@ -16,9 +15,7 @@ WriteMakefile(
     },
     PL_FILES            => {},
     PREREQ_PM => {
-        'Test::More'	=> 0,
 	'Text::Wrap'	=> 0,
-	'File::Glob'	=> 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'File-ANVL-*' },
