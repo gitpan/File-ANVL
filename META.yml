@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               File-ANVL
-version:            0.14
+version:            0.15
 abstract:           routines to support A Name Value Language, version 0.1
 author:
     - John A. Kunze <jak@ucop.edu>
@@ -11,7 +11,9 @@ configure_requires:
 build_requires:
     ExtUtils::MakeMaker:  0
 requires:
+    strict:      0
     Text::Wrap:  0
+    warnings:    0
 no_index:
     directory:
         - t

@@ -25,7 +25,7 @@ use constant NOTE	=> 2;
 my $anvl_mode = ANVL;
 
 our $VERSION;
-$VERSION = sprintf "%d.%02d", q$Name: Release-0-14 $ =~ /Release-(\d+)-(\d+)/;
+$VERSION = sprintf "%d.%02d", q$Name: Release-0-15 $ =~ /Release-(\d+)-(\d+)/;
 
 # This is a magic routine that the Exporter calls for any unknown symbols.
 #
