@@ -1,4 +1,4 @@
-use 5.000000;
+use 5.006;
 use strict;
 use warnings;
 use ExtUtils::MakeMaker;
@@ -12,13 +12,11 @@ WriteMakefile(
       ? ('LICENSE'=> 'Apache2')
       : ()),
     PM			=> {
-    	'lib/File/ANVL.pm' => 'blib/lib/File/ANVL.pm',
+	'lib/File/ANVL.pm'	=> 'blib/lib/File/ANVL.pm',
     },
     PL_FILES            => {},
     PREREQ_PM => {
 	'Text::Wrap'	=> 0,
-	'warnings'	=> 0,
-	'strict'	=> 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'File-ANVL-*' },
