@@ -1,22 +1,14 @@
 --- #YAML:1.0
-name:               File-ANVL
-version:            0.16
-abstract:           routines to support A Name Value Language, version 0.1
-author:
+name:                File-ANVL
+version:             0.20
+abstract:            routines to support A Name Value Language
+license:             BSD
+author:              
     - John A. Kunze <jak@ucop.edu>
-license:            Apache2
-distribution_type:  module
-configure_requires:
-    ExtUtils::MakeMaker:  0
-build_requires:
-    ExtUtils::MakeMaker:  0
-requires:
-    Text::Wrap:  0
-no_index:
-    directory:
-        - t
-        - inc
-generated_by:       ExtUtils::MakeMaker version 6.54
+generated_by:        ExtUtils::MakeMaker version 6.42
+distribution_type:   module
+requires:     
+    Text::Wrap:                    0
 meta-spec:
-    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
-    version:  1.4
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3
