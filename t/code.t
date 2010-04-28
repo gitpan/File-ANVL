@@ -6,7 +6,7 @@ use warnings;
 
 my $script = "anvl";		# script we're testing
 
-# as of 2009.08.27  (SHELL stuff, remake_td, Config perlpath)
+# as of 2010.04.28  (SHELL stuff, remake_td, Config perlpath minus _exe)
 #### start boilerplate for script name and temporary directory support
 
 use Config;
@@ -16,7 +16,7 @@ my $td = "td_$script";		# temporary test directory named for script
 my $blib = (-e "blib" || -e "../blib" ?	"-Mblib" : "-Ilib");
 my $bin = ($blib eq "-Mblib" ?		# path to testable script
 	"blib/script/" : "") . $script;
-my $perl = $Config{perlpath} . $Config{_exe};	# perl used in testing
+my $perl = $Config{perlpath};		# perl used in testing
 my $cmd = "2>&1 $perl $blib " .		# command to run, capturing stderr
 	(-x $bin ? $bin : "../$bin") . " ";	# exit status in $? >> 8
 
@@ -188,6 +188,8 @@ remove_td();
 
 {	# anvl_name_naturalize
 
+remake_td();
+
 is anvl_name_naturalize("Smith, John"), "Smith, John",
 	'naturalize, no final comma';
 
@@ -195,8 +197,73 @@ is anvl_name_naturalize("Smith, III, John,"), "John Smith, III",
 	'naturalize, with suffix';
 #print anvl_name_naturalize("Smith, III, John,"), "\n";
 
-is anvl_name_naturalize("Mao Tse Tung,"), "Mao Tse Tung",
+is anvl_name_naturalize("Hu Jintao,"), "Hu Jintao",
 	'naturalize, no internal comma';
 
+is anvl_name_naturalize("McCartney, Paul, Sir,,"), "Sir Paul McCartney",
+	'double-comma name';
+
+is anvl_name_naturalize("Health and Human Services, United States Government Department of, The,,"),
+	"The United States Government Department of Health and Human Services",
+	'double-comma title';
+
+is anvl_name_naturalize("a, b, c, d, e,,,"),
+	"e d c a, b",
+	'triple-comma value with 4th internal comma';
+
+my $recstream = '	 
+a: Hu Jintao,
+b: McCartney, Paul, Sir,,
+c: Health and Human Services, United States Government
+	Department of, The,,
+';
+my $x = `echo "$recstream" > $td/file`;
+
+$x = `$cmd --invert $td/file`;
+is $x, "a: Hu Jintao\nb: Sir Paul McCartney\nc: The United States Government Department of Health and Human Services\n\n",
+	'invert 3 values';
+
+remove_td
 }
 
+{	# --find and --show
+
+remake_td();
+
+# create and open a file with 3 records and whitespace before and after
+my $recstream = '	 
+    
+a: now
+c: is
+e: the
+g: time
+
+a: for
+c: all
+e: good
+g: men
+
+a: to
+c: come
+e: to
+g: the
+
+a: aid
+c: of
+e: the
+g: party
+';
+my $x = `echo "$recstream" > $td/file`;
+
+$x = `$cmd --find 'the' $td/file`;
+like $x, qr/e: the.*\n\n.*g: the.*\n\n.*e: the/s,
+	'find 3 records';
+
+$x = `$cmd --show 'the' $td/file`;
+is $x, "e: the\n\n\ng: the\n\ne: the\n\n", 'show 3 lines in 4 records';
+
+$x = `$cmd --find '(now|aid)' --show '^g' $td/file`;
+is $x, "g: time\n\ng: party\n\n", 'find and show with regexes';
+
+remove_td
+}

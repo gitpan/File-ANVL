@@ -1,7 +1,7 @@
 --- #YAML:1.0
 name:                File-ANVL
-version:             0.21
-abstract:            routines to support A Name Value Language
+version:             0.22
+abstract:            commands and routines for ANVL, ERC, and OM
 license:             BSD
 author:              
     - John A. Kunze <jak@ucop.edu>
