@@ -42,7 +42,7 @@ my %opt = (
 		exit 0;
 	}
 
-	defined(@File::ERC::erc_termlist) && defined(%File::ERC::erc_tags) or
+	defined(@File::ERC::erc_termlist) && %File::ERC::erc_tags or
 		File::ERC::tag2num_init();	# one-time lazy definition
 
 	my $ret = 0;
@@ -105,7 +105,7 @@ __END__
 
 =head1 NAME
 
-erc - lookup Electronic Resource Citation metadata tags
+erc - command to lookup Electronic Resource Citation metadata tags
 
 =head1 SYNOPSIS
 
