@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 our $VERSION;
-$VERSION = sprintf "%d.%02d", q$Name: Release-0-23 $ =~ /Release-(\d+)-(\d+)/;
+$VERSION = sprintf "%d.%02d", q$Name: Release-0-24 $ =~ /Release-(\d+)-(\d+)/;
 
 require Exporter;
 our @ISA = qw(Exporter);
@@ -66,7 +66,7 @@ sub om_opt_defaults { return {
 }
 
 sub new {
-	my $class = shift;
+	my $class = shift;	# XXX undefined depending on how called
 	my $self = om_opt_defaults();
 	my $format = lc shift;
 	if ($format) {
