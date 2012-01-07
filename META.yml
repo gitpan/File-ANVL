@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               File-ANVL
-version:            1.00
+version:            1.01
 abstract:           commands and routines for ANVL, ERC, and OM
 author:
     - John A. Kunze <jak@ucop.edu>
