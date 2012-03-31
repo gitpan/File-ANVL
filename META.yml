@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                File-ANVL
-version:             1.02
+version:             1.03
 abstract:            commands and routines for ANVL, ERC, and OM
 license:             BSD
 author:              
